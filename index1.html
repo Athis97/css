@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Cube Animation</title>
+    <style>
+        body
+        {
+            background: #222327;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .cube
+        {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg);
+            animation: animate 4s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotateX(-30deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(-30deg) rotateY(360deg);
+            }
+        }
+        
+        .cube div 
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+        }
+
+        .cube div span 
+        {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(#485675,#04f804);
+            transform: rotateY(calc(90deg*var(--i))) translateZ(100px);
+        }
+
+        .top {
+            position: absolute;
+            background: #485675;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .top::before {
+            content: '';
+            position: absolute;
+            background: #04f804;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transform: translateZ(-260px);
+            filter: blur(30px);
+            box-shadow: 0 0 200px rgba(0, 255, 0, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="cube">
+        <span class="top"></span>
+        <div>
+            <span style="--i:0"></span>
+            <span style="--i:1"></span>
+            <span style="--i:2"></span>
+            <span style="--i:3"></span>
+        </div>
+    </div>
+</body>
+</html>
